@@ -38,6 +38,52 @@ let span = document.querySelector(".close");
 
 btn.onclick = function(event) {
     event.preventDefault();
+
+    const table = document.querySelector('.resultTable');
+
+    const beverages = document.querySelectorAll('.beverage');
+
+    beverages.forEach(bev => {
+        const select = bev.querySelector('select');
+        const drink = select.options[select.selectedIndex].textContent;
+
+        const milkInput = bev.querySelector('input[type="radio"]:checked');
+
+        const milk = milkInput
+            ? milkInput.parentElement.querySelector('span').textContent
+            : '';
+
+        const checkboxes = bev.querySelectorAll('input[type="checkbox"]:checked');
+
+        let extras = '';
+
+        checkboxes.forEach(cb => {
+            const labelText = cb.parentElement.querySelector('span').textContent;
+
+            if (extras !== '') {
+                extras += ', ';
+            }
+            extras += labelText;
+        });
+
+        const row = document.createElement('tr');
+
+        const td1 = document.createElement('td');
+        td1.textContent = drink;
+
+        const td2 = document.createElement('td');
+        td2.textContent = milk;
+
+        const td3 = document.createElement('td');
+        td3.textContent = extras;
+
+        row.appendChild(td1);
+        row.appendChild(td2);
+        row.appendChild(td3);
+
+        table.appendChild(row);
+    });
+
     modal.style.display = "block";
 }
 
