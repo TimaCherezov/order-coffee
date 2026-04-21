@@ -42,6 +42,12 @@ btn.onclick = function(event) {
 
     const table = document.querySelector('.resultTable');
 
+    const rows = table.querySelectorAll('tr');
+
+    for (let i = 1; i < rows.length; i++) {
+        rows[i].remove();
+    }
+
     const beverages = document.querySelectorAll('.beverage');
 
     beverages.forEach(bev => {
