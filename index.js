@@ -27,3 +27,22 @@ addButton.addEventListener('click', () => {
 
     form.insertBefore(clone, addButton.parentElement);
 });
+
+let modal = document.getElementById("myModal");
+let btn = document.querySelector('.submit-button');
+let span = document.querySelector(".close");
+
+btn.onclick = function(event) {
+    event.preventDefault();
+    modal.style.display = "block";
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target === modal) {
+        modal.style.display = "none";
+    }
+}
