@@ -1,4 +1,3 @@
-// 2nd
 for (const curr_button of document.querySelectorAll('.beverage .remove-button')){
     curr_button.addEventListener('click', () => {curr_button.parentElement.remove();});
 }
@@ -25,6 +24,8 @@ addButton.addEventListener('click', () => {
         }
         radio.name = `milk-${newIndex}`;
     });
+
+    clone.querySelector('.remove-button').addEventListener('click', () => {clone.remove();});
 
     const checkboxes = clone.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(cb => cb.checked = false);
@@ -84,6 +85,9 @@ btn.onclick = function(event) {
         table.appendChild(row);
     });
 
+    const cnt_name = document.querySelector(".cnt_name");
+    cnt_name.textContent = declinateDrinks(beverages.length);
+
     modal.style.display = "block";
 }
 
@@ -96,3 +100,23 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+function declinateDrinks(count) {
+    const lastTwo = count % 100;
+    const lastOne = count % 10;
+
+    if (lastTwo >= 11 && lastTwo <= 19) {
+        return `${count} напитков`;
+    }
+    if (lastOne === 1) {
+        return `${count} напиток`;
+    }
+    if (lastOne >= 2 && lastOne <= 4) {
+        return `${count} напитка`;
+    }
+    return `${count} напитков`;
+}
+
+
+
+
