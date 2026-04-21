@@ -123,6 +123,28 @@ function declinateDrinks(count) {
     return `${count} напитков`;
 }
 
+document.addEventListener('input', function (e) {
+    const wrapper = e.target.closest('.field');
+    const preview = wrapper.querySelector('.extra-preview');
+
+    let text = e.target.value;
+
+    const words = [
+        'срочно',
+        'быстрее',
+        'побыстрее',
+        'скорее',
+        'поскорее',
+        'очень нужно'
+    ];
+
+    words.forEach(word => {
+        const regex = new RegExp(word, 'gi');
+        text = text.replace(regex, '<b>' + word + '</b>');
+    });
+
+    preview.innerHTML = text;
+});
 
 
 
